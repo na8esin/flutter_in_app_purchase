@@ -27,9 +27,9 @@ class InApp extends StatefulWidget {
 }
 
 class _InAppState extends State<InApp> {
-  StreamSubscription _purchaseUpdatedSubscription;
-  StreamSubscription _purchaseErrorSubscription;
-  StreamSubscription _conectionSubscription;
+  StreamSubscription? _purchaseUpdatedSubscription;
+  StreamSubscription? _purchaseErrorSubscription;
+  StreamSubscription? _conectionSubscription;
   final List<String> _productLists = Platform.isAndroid
       ? [
           'android.test.purchased',
@@ -52,7 +52,7 @@ class _InAppState extends State<InApp> {
   @override
   void dispose() {
     if (_conectionSubscription != null) {
-      _conectionSubscription.cancel();
+      _conectionSubscription!.cancel();
       _conectionSubscription = null;
     }
   }
@@ -62,7 +62,7 @@ class _InAppState extends State<InApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await FlutterInappPurchase.instance.platformVersion;
+      platformVersion = (await FlutterInappPurchase.instance.platformVersion)!;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -105,7 +105,7 @@ class _InAppState extends State<InApp> {
   }
 
   void _requestPurchase(IAPItem item) {
-    FlutterInappPurchase.instance.requestPurchase(item.productId);
+    FlutterInappPurchase.instance.requestPurchase(item.productId!);
   }
 
   Future _getProduct() async {
@@ -124,7 +124,7 @@ class _InAppState extends State<InApp> {
 
   Future _getPurchases() async {
     List<PurchasedItem> items =
-        await FlutterInappPurchase.instance.getAvailablePurchases();
+        (await FlutterInappPurchase.instance.getAvailablePurchases())!;
     for (var item in items) {
       print('${item.toString()}');
       this._purchases.add(item);
@@ -138,7 +138,7 @@ class _InAppState extends State<InApp> {
 
   Future _getPurchaseHistory() async {
     List<PurchasedItem> items =
-        await FlutterInappPurchase.instance.getPurchaseHistory();
+        (await FlutterInappPurchase.instance.getPurchaseHistory())!;
     for (var item in items) {
       print('${item.toString()}');
       this._purchases.add(item);
@@ -278,11 +278,11 @@ class _InAppState extends State<InApp> {
                             print("---------- End Connection Button Pressed");
                             await FlutterInappPurchase.instance.endConnection;
                             if (_purchaseUpdatedSubscription != null) {
-                              _purchaseUpdatedSubscription.cancel();
+                              _purchaseUpdatedSubscription!.cancel();
                               _purchaseUpdatedSubscription = null;
                             }
                             if (_purchaseErrorSubscription != null) {
-                              _purchaseErrorSubscription.cancel();
+                              _purchaseErrorSubscription!.cancel();
                               _purchaseErrorSubscription = null;
                             }
                             setState(() {
