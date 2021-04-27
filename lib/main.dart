@@ -17,6 +17,8 @@ void main() {
   runApp(_MyApp());
 }
 
+// `autoConsume` is provided as a utility for Android only.
+// 説明を読んでもよくわからない
 const bool _kAutoConsume = true;
 
 const String _kConsumableId = 'consumable';
@@ -77,6 +79,7 @@ class _MyAppState extends State<_MyApp> {
       return;
     }
 
+    // 商品問い合わせ
     ProductDetailsResponse productDetailResponse =
         await _connection.queryProductDetails(_kProductIds.toSet());
     if (productDetailResponse.error != null) {
