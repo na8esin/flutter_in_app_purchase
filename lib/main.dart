@@ -19,8 +19,12 @@ void main() {
 
 // `autoConsume` is provided as a utility for Android only.
 // 説明を読んでもよくわからない
+// [定期購入は、消費不可アイテムと同様に処理されます]
+// https://developer.android.com/google/play/billing/integrate?hl=ja#process
+// ということなので、とりあえず無視
 const bool _kAutoConsume = true;
 
+// アイテムIDの設定
 const String _kConsumableId = 'consumable';
 const String _kUpgradeId = 'upgrade';
 const String _kSilverSubscriptionId = 'subscription_silver';
@@ -51,6 +55,7 @@ class _MyAppState extends State<_MyApp> {
 
   @override
   void initState() {
+    // 最新情報を受け取る
     final Stream<List<PurchaseDetails>> purchaseUpdated =
         InAppPurchaseConnection.instance.purchaseUpdatedStream;
     _subscription = purchaseUpdated.listen((purchaseDetailsList) {
@@ -372,6 +377,17 @@ class _MyAppState extends State<_MyApp> {
   Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) {
     // IMPORTANT!! Always verify a purchase before delivering the product.
     // For the purpose of an example, we directly return true.
+    // ここはプラットフォームごとに違いそう。。。
+
+    // https://developer.android.com/google/play/billing/security#verify
+    // にズバリ合いそうなソースが下記に乗ってる
+    // https://github.com/android/play-billing-samples/blob/2a096dc0803c24b4e808ec7302e667e1d55200f2/ClassyTaxiServer/src/play-billing/PurchasesManager.ts#L44
+
+    // localVerificationDataってなんだ？基本serverじゃないの？
+    // iosはserverVerificationDataでも同じものらしい
+    // まあ気にしなくていいか
+    //purchaseDetails.verificationData.localVerificationData;
+
     return Future<bool>.value(true);
   }
 
