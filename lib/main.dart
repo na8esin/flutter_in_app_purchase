@@ -9,7 +9,7 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 
 import 'consumable_store.dart';
 
-void main() {
+Future<void> main() async {
   // For play billing library 2.0 on Android, it is mandatory to call
   // [enablePendingPurchases](https://developer.android.com/reference/com/android/billingclient/api/BillingClient.Builder.html#enablependingpurchases)
   // as part of initializing the app.
