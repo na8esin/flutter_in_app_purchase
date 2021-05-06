@@ -1,6 +1,6 @@
 in_app_purchaseのサンプルをmainに
 
-デベロッパー登録とかしてないので、androidで立ち上げると例外は発生するが画面は表示される状態
+デベロッパー登録して、商品を設定すれば購入のテストはできる状態
 
 https://github.com/android/play-billing-samples
 

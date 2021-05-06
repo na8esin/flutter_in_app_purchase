@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:dio/dio.dart';
 
 import 'consumable_store.dart';
 
@@ -181,7 +182,7 @@ class _MyAppState extends State<_MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('IAP Example'),
+          title: const Text('IAP Example ver4'),
         ),
         body: Stack(
           children: stack,
@@ -374,7 +375,7 @@ class _MyAppState extends State<_MyApp> {
     });
   }
 
-  Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) {
+  Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) async {
     // IMPORTANT!! Always verify a purchase before delivering the product.
     // For the purpose of an example, we directly return true.
     // ここはプラットフォームごとに違いそう。。。
@@ -388,6 +389,11 @@ class _MyAppState extends State<_MyApp> {
     // まあ気にしなくていいか
     //purchaseDetails.verificationData.localVerificationData;
 
+    final token = purchaseDetails.verificationData.serverVerificationData;
+
+    await Dio().post(
+        'https://us-central1-ij-learning-develop.cloudfunctions.net/subscription_register',
+        data: {"sku": 1, "token": token, "uid": "uidhogehoge"});
     return Future<bool>.value(true);
   }
 
