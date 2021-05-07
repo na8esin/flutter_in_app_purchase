@@ -182,7 +182,7 @@ class _MyAppState extends State<_MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('IAP Example ver4'),
+          title: const Text('IAP Example 1.0.1'),
         ),
         body: Stack(
           children: stack,
