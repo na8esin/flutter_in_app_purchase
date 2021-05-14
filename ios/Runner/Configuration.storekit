@@ -1,38 +1,14 @@
 {
+  "identifier" : "33ED6E36",
+  "nonRenewingSubscriptions" : [
+
+  ],
   "products" : [
-    {
-      "displayPrice" : "0.99",
-      "familyShareable" : false,
-      "internalID" : "AE10D05D",
-      "localizations" : [
-        {
-          "description" : "A consumable product.",
-          "displayName" : "Consumable",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "consumable",
-      "referenceName" : "consumable",
-      "type" : "Consumable"
-    },
-    {
-      "displayPrice" : "10.99",
-      "familyShareable" : false,
-      "internalID" : "FABCF067",
-      "localizations" : [
-        {
-          "description" : "An non-consumable product.",
-          "displayName" : "Upgrade",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "upgrade",
-      "referenceName" : "upgrade",
-      "type" : "NonConsumable"
-    }
+
   ],
   "settings" : {
-
+    "_locale" : "ja",
+    "_storefront" : "JPN"
   },
   "subscriptionGroups" : [
     {
@@ -46,16 +22,16 @@
           "adHocOffers" : [
 
           ],
-          "displayPrice" : "3.99",
+          "displayPrice" : "100",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "922EB597",
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "A lower level subscription.",
-              "displayName" : "Subscription Silver",
-              "locale" : "en_US"
+              "description" : "一般的な有料会員です。",
+              "displayName" : "有料会員",
+              "locale" : "ja"
             }
           ],
           "productID" : "subscription_silver",
@@ -68,16 +44,16 @@
           "adHocOffers" : [
 
           ],
-          "displayPrice" : "5.99",
+          "displayPrice" : "200",
           "familyShareable" : false,
           "groupNumber" : 2,
           "internalID" : "0BC7FF5E",
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "A higher level subscription.",
-              "displayName" : "Subscription Gold",
-              "locale" : "en_US"
+              "description" : "全てのコンテンツが利用可能です。",
+              "displayName" : "プレミアム会員",
+              "locale" : "ja"
             }
           ],
           "productID" : "subscription_gold",
@@ -91,6 +67,6 @@
   ],
   "version" : {
     "major" : 1,
-    "minor" : 0
+    "minor" : 1
   }
 }

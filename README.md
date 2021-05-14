@@ -7,3 +7,4 @@ https://github.com/android/play-billing-samples
 # 利用権を付与する前に購入を確認する
 https://developer.android.com/google/play/billing/security#verify
 
+# Configuration.storekitの編集はxcode上で簡潔する
