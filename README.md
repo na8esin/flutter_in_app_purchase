@@ -8,3 +8,4 @@ https://github.com/android/play-billing-samples
 https://developer.android.com/google/play/billing/security#verify
 
 # Configuration.storekitの編集はxcode上で簡潔する
+flutter_localizationsは関係ない
