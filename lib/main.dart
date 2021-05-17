@@ -398,11 +398,21 @@ class _MyAppState extends State<_MyApp> {
     // まあ気にしなくていいか
     //purchaseDetails.verificationData.localVerificationData;
 
+    // xcodeテストだと空だった
     final token = purchaseDetails.verificationData.serverVerificationData;
-
-    await Dio().post(
-        'https://us-central1-ij-learning-develop.cloudfunctions.net/subscription_register',
-        data: {"sku": 1, "token": token, "uid": "uidhogehoge"});
+    final uid = 'hq8jd2nn1ibFlGXKuYtEeUiYcyF2';
+    if (Platform.isAndroid) {
+      await Dio().post(
+          'https://us-central1-ij-learning-develop.cloudfunctions.net/subscription_register',
+          data: {"sku": 1, "token": token, "uid": uid});
+    } else if (Platform.isIOS) {
+      await Dio().post(
+          'https://us-central1-ij-learning-develop.cloudfunctions.net/sk_validate_receipt',
+          data: {
+            "uid": uid,
+            "receipt": token,
+          });
+    }
     return Future<bool>.value(true);
   }
 
