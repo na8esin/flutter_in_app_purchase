@@ -35,7 +35,7 @@ PODS:
   - GoogleUtilities/Logger (7.4.1):
     - GoogleUtilities/Environment
   - GTMSessionFetcher/Core (1.5.0)
-  - in_app_purchase (0.0.1):
+  - in_app_purchase_ios (0.0.1):
     - Flutter
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -51,7 +51,7 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
   - flutter_inapp_purchase (from `.symlinks/plugins/flutter_inapp_purchase/ios`)
-  - in_app_purchase (from `.symlinks/plugins/in_app_purchase/ios`)
+  - in_app_purchase_ios (from `.symlinks/plugins/in_app_purchase_ios/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 SPEC REPOS:
@@ -75,8 +75,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_inapp_purchase:
     :path: ".symlinks/plugins/flutter_inapp_purchase/ios"
-  in_app_purchase:
-    :path: ".symlinks/plugins/in_app_purchase/ios"
+  in_app_purchase_ios:
+    :path: ".symlinks/plugins/in_app_purchase_ios/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
@@ -92,7 +92,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  in_app_purchase: 3e2155afa9d03d4fa32d9e62d567885080ce97d6
+  in_app_purchase_ios: 1fd2beee2a16ec0c1b52c0e8720036612dd9f86f
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d

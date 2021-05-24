@@ -396,7 +396,7 @@ class _MyAppState extends State<_MyApp> {
     // localVerificationDataってなんだ？基本serverじゃないの？
     // iosはserverVerificationDataでも同じものらしい
     // まあ気にしなくていいか
-    //purchaseDetails.verificationData.localVerificationData;
+    print(purchaseDetails.verificationData.localVerificationData);
 
     // xcodeテストだと空だった
     final token = purchaseDetails.verificationData.serverVerificationData;
