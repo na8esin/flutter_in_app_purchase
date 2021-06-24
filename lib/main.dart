@@ -67,6 +67,7 @@ class _MyAppState extends State<_MyApp> {
     // 最新情報を受け取る
     final Stream<List<PurchaseDetails>> purchaseUpdated =
         _inAppPurchase.purchaseStream;
+
     _subscription = purchaseUpdated.listen((purchaseDetailsList) {
       _listenToPurchaseUpdated(purchaseDetailsList);
     }, onDone: () {
@@ -396,10 +397,15 @@ class _MyAppState extends State<_MyApp> {
     // localVerificationDataってなんだ？基本serverじゃないの？
     // iosはserverVerificationDataでも同じものらしい
     // まあ気にしなくていいか
+    final localVerificationData =
+        purchaseDetails.verificationData.localVerificationData;
     print(purchaseDetails.verificationData.localVerificationData);
 
     // xcodeテストだと空だった
-    final token = purchaseDetails.verificationData.serverVerificationData;
+    var token = purchaseDetails.verificationData.serverVerificationData;
+    if (token == '') {
+      token = localVerificationData;
+    }
     final uid = 'hq8jd2nn1ibFlGXKuYtEeUiYcyF2';
     if (Platform.isAndroid) {
       await Dio().post(
