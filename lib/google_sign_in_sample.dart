@@ -11,6 +11,10 @@ import "package:http/http.dart" as http;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'package:in_app_purchase_android/in_app_purchase_android.dart';
+
+import 'purchase.dart';
+
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
   // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
@@ -20,7 +24,12 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 
+// これでsign inが成功するっていうことは端末がgoogleアカウントでloginしている状態っていう意味
+// だから、emailとパスワードをベタがきしてログインできれば自動ログインはできる
+// でもOAuthの仕組みに乗っ取らないといけないから、結構大変かも？
+
 void main() {
+  InAppPurchaseAndroidPlatformAddition.enablePendingPurchases();
   runApp(
     MaterialApp(
       title: 'Google Sign In',
@@ -131,6 +140,12 @@ class SignInDemoState extends State<SignInDemo> {
             child: const Text('REFRESH'),
             onPressed: () => _handleGetContact(user),
           ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Purchase()));
+              },
+              child: const Text('Purchase'))
         ],
       );
     } else {
