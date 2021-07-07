@@ -9,9 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
-import 'consumable_store.dart';
 
 import 'package:dio/dio.dart';
+
+import 'consumable_store.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,6 +62,7 @@ class _MyAppState extends State<_MyApp> {
   bool _purchasePending = false;
   bool _loading = true;
   String? _queryProductError;
+  dynamic _errorDetails;
 
   @override
   void initState() {
@@ -99,6 +101,7 @@ class _MyAppState extends State<_MyApp> {
         await _inAppPurchase.queryProductDetails(_kProductIds.toSet());
     if (productDetailResponse.error != null) {
       setState(() {
+        _errorDetails = productDetailResponse.error!.details;
         _queryProductError = productDetailResponse.error!.message;
         _isAvailable = isAvailable;
         _products = productDetailResponse.productDetails;
@@ -159,7 +162,7 @@ class _MyAppState extends State<_MyApp> {
       );
     } else {
       stack.add(Center(
-        child: Text(_queryProductError!),
+        child: Text('_queryProductError: ${_queryProductError!}'),
       ));
     }
     if (_purchasePending) {
@@ -177,6 +180,11 @@ class _MyAppState extends State<_MyApp> {
         ),
       );
     }
+    if (_errorDetails != null) {
+      stack.add(Text('$_errorDetails'));
+    }
+
+    stack.add(Text('hello. i am mickel'));
 
     return MaterialApp(
       home: Scaffold(
@@ -208,6 +216,7 @@ class _MyAppState extends State<_MyApp> {
         ListTile(
           title: Text('Not connected',
               style: TextStyle(color: ThemeData.light().errorColor)),
+          // google ログインしてない時は下記が表示される
           subtitle: const Text(
               'Unable to connect to the payments processor. Has this app been configured correctly? See the example README for instructions.'),
         ),
