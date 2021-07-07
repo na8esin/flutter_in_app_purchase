@@ -37,3 +37,10 @@ SHA-1 証明書のフィンガープリントの設定
 ネットワークエラーらしいけど、そんなはずはないし、上の10のエラーが解決されると出なくなった
 
 https://stackoverflow.com/questions/55583381/what-does-apiexpception-7-mean-when-using-google-sign-in-through-firebase
+
+# In-app billing API version 3 is not supported on this device
+google playにログインしてないとログに出るらしい  
+https://stackoverflow.com/questions/33180743/in-app-billing-version-3-not-supported-with-up-to-date-play-store
+
+# Robo テストでのログイン
+https://firebase.google.cn/docs/test-lab/android/robo-ux-test?hl=ja#sign-in

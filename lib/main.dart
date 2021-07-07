@@ -17,10 +17,12 @@ import 'credential.dart';
 
 import 'consumable_store.dart';
 
+UserCredential? user;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FirebaseAuth.instance.signInWithCredential(
+  user = await FirebaseAuth.instance.signInWithCredential(
       EmailAuthProvider.credential(email: email, password: password));
 
   if (defaultTargetPlatform == TargetPlatform.android) {
@@ -29,7 +31,6 @@ Future<void> main() async {
     // as part of initializing the app.
     InAppPurchaseAndroidPlatformAddition.enablePendingPurchases();
   }
-
   runApp(_MyApp());
 }
 
