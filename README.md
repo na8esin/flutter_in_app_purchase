@@ -17,12 +17,23 @@ flutter_localizationsは関係ない
 exampleをcompareしながら修正する
 
 # テスト項目
-- 購入してコンテンツが見れる
-- 定期購入を解除するとコンテンツが見れなくなる
-- カードが無効などで支払いができないけど猶予期間中は使える
+https://developer.android.com/google/play/billing/test?hl=ja#test_cases
 
 # android , iosの違い
 - subscription upgrade or downgradeはiosではiTunesConnectで行う
 
 # version up
 0.6.0から1.0.0でexampleに変化なし
+
+# SHA 証明書フィンガープリント
+./gradlew signingReport
+
+# PlatformException(sign_in_failed, com.google.android.gms.common.api.ApiException
+## 12500
+Firebaseのプロジェクトの設定で`サポートメール`を設定する
+## 10
+SHA-1 証明書のフィンガープリントの設定
+## com.google.android.gms.common.api.ApiException: 7
+ネットワークエラーらしいけど、そんなはずはないし、上の10のエラーが解決されると出なくなった
+
+https://stackoverflow.com/questions/55583381/what-does-apiexpception-7-mean-when-using-google-sign-in-through-firebase
