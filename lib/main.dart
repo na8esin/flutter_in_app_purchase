@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
@@ -11,11 +12,16 @@ import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'credential.dart';
 
 import 'consumable_store.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await FirebaseAuth.instance.signInWithCredential(
+      EmailAuthProvider.credential(email: email, password: password));
 
   if (defaultTargetPlatform == TargetPlatform.android) {
     // For play billing library 2.0 on Android, it is mandatory to call
@@ -31,7 +37,7 @@ Future<void> main() async {
 // 説明を読んでもよくわからない
 // [定期購入は、消費不可アイテムと同様に処理されます]
 // https://developer.android.com/google/play/billing/integrate?hl=ja#process
-// ということなので、とりあえず無視
+// ということなので、とりあえずは定期購入だけ試せればいいので無視
 const bool _kAutoConsume = true;
 
 // アイテムIDの設定
