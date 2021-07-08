@@ -44,3 +44,6 @@ https://stackoverflow.com/questions/33180743/in-app-billing-version-3-not-suppor
 
 # Robo テストでのログイン
 https://firebase.google.cn/docs/test-lab/android/robo-ux-test?hl=ja#sign-in
+
+# codelabs
+https://codelabs.developers.google.com/codelabs/flutter-in-app-purchases#0
