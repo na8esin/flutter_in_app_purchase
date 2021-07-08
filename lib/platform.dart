@@ -1,10 +1,9 @@
 import 'dart:io' show Platform, stdout;
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 void main() {
-  // Get the operating system as a string.
-  String os = Platform.operatingSystem;
-
+  print(defaultTargetPlatform);
   // Or, use a predicate getter.
   // ここの判定はdebugモードでも機能する
   if (Platform.isIOS) {
@@ -33,6 +32,15 @@ class MyApp extends StatelessWidget {
       eachPlatform = Container();
       print(Platform.operatingSystem);
     }
+
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      print('android');
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      print('ios');
+    } else {
+      print('default is $defaultTargetPlatform');
+    }
+
     return MaterialApp(
       home: Scaffold(
         // SafeAreaがないと上の時計の部分に文字が入り込む

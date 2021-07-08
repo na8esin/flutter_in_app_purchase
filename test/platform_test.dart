@@ -1,8 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/foundation.dart';
 
 import '../lib/platform.dart';
 
 void main() {
+  debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+
   // Define a test. The TestWidgets function also provides a WidgetTester
   // to work with. The WidgetTester allows building and interacting
   // with widgets in the test environment.
