@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       );
     } else {
       eachPlatform = Container();
-      print('something else.');
+      print(Platform.operatingSystem);
     }
     return MaterialApp(
       home: Scaffold(
