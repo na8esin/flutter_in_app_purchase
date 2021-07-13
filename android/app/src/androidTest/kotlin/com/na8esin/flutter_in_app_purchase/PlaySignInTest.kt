@@ -112,6 +112,9 @@ class PlaySignInTest {
         // The screen continues after this, but sign in is completed up to this point
 
         // screen shot
+        // 最初はPermission deniedになるが、そのうちならなくなる。
+        //     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        // ↑を加えなくても発生しない
         val file = File("/sdcard/Pictures/playStoreSignIn.png")
         mDevice.takeScreenshot(file)
 
