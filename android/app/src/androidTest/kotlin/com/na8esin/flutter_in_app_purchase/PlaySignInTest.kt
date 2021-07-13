@@ -21,7 +21,7 @@ import java.io.File
  */
 @RunWith(AndroidJUnit4::class)
 @SdkSuppress(minSdkVersion = 18)
-class PlaySignInTestTest {
+class PlaySignInTest {
     companion object {
         const val BASIC_SAMPLE_PACKAGE
                 = "com.example.android.testing.uiautomator.BasicSample"
