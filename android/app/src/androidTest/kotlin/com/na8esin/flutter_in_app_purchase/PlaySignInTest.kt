@@ -1,4 +1,5 @@
 package com.na8esin.flutter_in_app_purchase
+
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -24,7 +25,7 @@ import java.io.File
 class PlaySignInTest {
     companion object {
         const val BASIC_SAMPLE_PACKAGE
-                = "com.example.android.testing.uiautomator.BasicSample"
+                = "com.na8esin.flutter_in_app_purchase"
         const val LAUNCH_TIMEOUT:Long = 5000
     }
 
