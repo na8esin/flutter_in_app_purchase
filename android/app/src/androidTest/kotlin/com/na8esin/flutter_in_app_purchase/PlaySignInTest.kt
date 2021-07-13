@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.util.Log
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
@@ -27,12 +28,15 @@ class PlaySignInTest {
         const val BASIC_SAMPLE_PACKAGE
                 = "com.na8esin.flutter_in_app_purchase"
         const val LAUNCH_TIMEOUT:Long = 5000
+        const val TAG = "PlaySignInTest"
     }
 
     private lateinit var mDevice: UiDevice
 
     @Before
     fun startMainActivityFromHomeScreen() {
+
+        Log.d(TAG,"before")
 
         // Initialize UiDevice instance
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
