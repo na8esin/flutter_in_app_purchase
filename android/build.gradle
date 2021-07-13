@@ -19,6 +19,11 @@ allprojects {
     }
 }
 
+// 一番下に定義するとunknown property
+ext {
+    uiAutomatorVersion = "2.2.0"
+}
+
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
@@ -29,8 +34,4 @@ subprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-ext {
-    uiAutomatorVersion = "2.2.0"
 }
