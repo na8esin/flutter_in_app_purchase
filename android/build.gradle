@@ -30,3 +30,7 @@ subprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    uiAutomatorVersion = "2.2.0"
+}
