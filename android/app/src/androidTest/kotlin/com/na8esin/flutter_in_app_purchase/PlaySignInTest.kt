@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.util.Log
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry
@@ -58,8 +57,8 @@ class PlaySignInTest {
                 "https://play.google.com/store")
             setPackage("com.android.vending")
         }
-        intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        val context = ApplicationProvider.getApplicationContext<Context>()
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        val context = getApplicationContext<Context>()
         context.startActivity(intent)
 
         // Wait for the app to appear
@@ -132,7 +131,7 @@ class PlaySignInTest {
         intent.addCategory(Intent.CATEGORY_HOME)
 
         // Use PackageManager to get the launcher package name
-        val pm = ApplicationProvider.getApplicationContext<Context>().packageManager
+        val pm = getApplicationContext<Context>().packageManager
         val resolveInfo = pm.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
         return resolveInfo?.activityInfo?.packageName
     }
@@ -171,7 +170,9 @@ class PlaySignInTest {
             UiSelector().text(buttonName).className("android.widget.Button")
         )
         if (aButton.exists() && aButton.isEnabled) {
-            aButton.click()
+            aButton.clickAndWaitForNewWindow()
+        } else {
+            Log.d(TAG, "click failed: $buttonName")
         }
     }
 }
