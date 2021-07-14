@@ -17,6 +17,9 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.Until
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 
 /**
  * Basic sample for unbundled UiAutomator.
@@ -34,20 +37,12 @@ class PlaySignInTest {
     private lateinit var mDevice: UiDevice
 
     @Before
-    fun startMainActivityFromHomeScreen() {
-
-        Log.d(TAG,"before")
-
+    fun startFromHomeScreen() {
         // Initialize UiDevice instance
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
 
         // Start from the home screen
         mDevice.pressHome()
-
-        // Wait for launcher
-        val launcherPackage = getLauncherPackageName()
-        assertThat(launcherPackage, notNullValue())
-        mDevice.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT)
     }
 
     @Test
@@ -109,7 +104,12 @@ class PlaySignInTest {
         // Terms of Service
         buttonClick("I agree")
 
+        waitUntilATextIsDisplayed("Google Services")
+
         // The screen continues after this, but sign in is completed up to this point
+
+        launchBluePrintApp()
+        waitUntilATextIsDisplayed("IAP Example 1.0.1")
 
         // screen shot
         // 最初はPermission deniedになるが、そのうちならなくなる。
@@ -137,10 +137,32 @@ class PlaySignInTest {
         return resolveInfo?.activityInfo?.packageName
     }
 
+    private fun launchBluePrintApp() {
+        // Wait for launcher
+        val launcherPackage = getLauncherPackageName()
+        assertThat(launcherPackage, notNullValue())
+        mDevice.wait(Until.hasObject(By.pkg(launcherPackage).depth(0)), LAUNCH_TIMEOUT)
+
+        // Launch the blueprint app
+        val context = getApplicationContext<Context>()
+        val intent = context.packageManager
+            .getLaunchIntentForPackage(BASIC_SAMPLE_PACKAGE)
+        intent!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // Clear out any previous instances
+
+        context.startActivity(intent)
+
+        // Wait for the app to appear
+        mDevice.wait(Until.hasObject(By.pkg(BASIC_SAMPLE_PACKAGE).depth(0)), LAUNCH_TIMEOUT)
+    }
+
     private fun waitUntilWelcomeIsDisplayed() {
+        waitUntilATextIsDisplayed("Welcome")
+    }
+
+    private fun waitUntilATextIsDisplayed(text:String) {
         mDevice.wait(
             Until.hasObject(
-                By.text("Welcome")),
+                By.text(text)),
             LAUNCH_TIMEOUT)
     }
 
