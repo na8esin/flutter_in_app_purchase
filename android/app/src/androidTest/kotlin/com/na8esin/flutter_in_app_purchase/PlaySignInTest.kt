@@ -51,7 +51,6 @@ class PlaySignInTest {
 
     @Test
     fun playStoreSignIn() {
-
         val intent = Intent(Intent.ACTION_VIEW).apply {
             data = Uri.parse(
                 "https://play.google.com/store")
@@ -107,15 +106,32 @@ class PlaySignInTest {
 
         // The screen continues after this, but sign in is completed up to this point
 
-        launchBluePrintApp()
-        waitUntilATextIsDisplayed("IAP Example 1.0.1")
-
         // screen shot
         // 最初はPermission deniedになるが、そのうちならなくなる。
         //     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
         // ↑を加えなくても発生しない
         val file = File("/sdcard/Pictures/playStoreSignIn.png")
         mDevice.takeScreenshot(file)
+
+        assertThat("hello", equalTo("hello"))
+    }
+
+    @Test
+    fun iAPTest() {
+        launchBluePrintApp()
+        waitUntilATextIsDisplayed("IAP Example 1.0.1")
+
+        // 値段が変わるとクリックできなくなるので要改善
+        // flutterのwidgetはなぜかtextじゃなくてcontent-descに入ってる
+        val purchaseButton = mDevice.findObject(
+            UiSelector().description("¥100")
+                .className("android.widget.Button")
+        )
+        if (purchaseButton.exists() && purchaseButton.isEnabled) {
+            purchaseButton.clickAndWaitForNewWindow()
+        } else {
+            Log.d(TAG, "click failed: $purchaseButton")
+        }
 
         assertThat("hello", equalTo("hello"))
     }
