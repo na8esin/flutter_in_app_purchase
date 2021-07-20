@@ -71,6 +71,7 @@ class _MyAppState extends State<Purchase> {
   }
 
   Future<void> initStoreInfo() async {
+    // googleアカウントにsign inしてなくてもfalseになる
     final bool isAvailable = await _inAppPurchase.isAvailable();
     if (!isAvailable) {
       setState(() {
