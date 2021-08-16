@@ -133,6 +133,8 @@ class _MyAppState extends State<Purchase> {
 
   @override
   void dispose() {
+    // printを入れても画面をただ放置しているだけだと実行されない
+    // 要するに、ユーザキャンセルで画面が切り替わらないのはこいつのせいではない
     _subscription.cancel();
     super.dispose();
   }
